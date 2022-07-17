@@ -1,6 +1,7 @@
 
 const shoppingList = document.getElementById("list");
 const input = document.getElementById("input");
+const niveis = document.getElementById("niveis");
 const addButton = document.getElementById("add");
 const resetButton = document.getElementById("reset");
 
@@ -20,7 +21,7 @@ function createRemoveButton() {
     const removeButton = document.createElement("button"); // Criamos um botão
     removeButton.innerText = "Remove";
     removeButton.addEventListener("click", (e) => { // Adicionamos um evento nele.
-
+        console.log(e.path[1]);
       list = list.filter((_, index) => index !== Number(e.path[1].id));
       reloadList(); // Chamamos a função para recarregar a lista.
     });
@@ -28,14 +29,17 @@ function createRemoveButton() {
 }
 
 function onClickFunction() {
-    let newItem = document.createElement("li");   //Criando um elemento html "li"
-    let paragraph = document.createElement("p");  //Criando um elemento html "p"
-    let removeButton = createRemoveButton();
+    let newItem         = document.createElement("li");   //Criando um elemento html "li"
+    let paragraph       = document.createElement("p");  //Criando um elemento html "p"
+    let nivel           = document.createElement("p");
+    let removeButton    = createRemoveButton();
             
     if (input.value) {
     paragraph.innerText = input.value; // Adicionamos o valor do input em nosso "p"
+    nivel.innerText     = niveis.value;
   
     newItem.appendChild(paragraph); // Colocamos nosso paragraph dentro de nossa li
+    newItem.appendChild(nivel);
     newItem.appendChild(removeButton);// Colocamos nosso button dentro de nossa li
   
     input.value = ""; // Limpamos nosso input
